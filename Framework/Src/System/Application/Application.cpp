@@ -12,17 +12,6 @@ ErrorHandle Application::Initialize(const ApplicationConfig& config)
 	mTime = std::make_unique<Time>();
 	mTime->Initialize();
 
-	// ループハンドラの設定
-	if (config.gameLoopHandler == nullptr)
-	{
-		return ErrorHandle{
-			1,
-			"GameLoopHandler is null."
-		};
-	}
-	mGameLoopHandler = config.gameLoopHandler;
-
-
 	// DxLibの生成
 	mDxLib = std::make_unique<DxLibManager>();
 	eh = mDxLib->Initialize(config.DxLibConfig);
@@ -34,10 +23,21 @@ ErrorHandle Application::Initialize(const ApplicationConfig& config)
 	// 入力
 	mInput = std::make_unique<InputManager>();
 
+	// ループハンドラの設定
+	if (config.gameLoopHandler == nullptr)
+	{
+		eh = ErrorHandle{
+			1,
+			"GameLoopHandler is null."
+		};
+	}
+	mGameLoopHandler = config.gameLoopHandler;
+
+
 	// コンテキストへの追加
 	AddToContext();
 
-	return ErrorHandle{};
+	return eh;
 }
 
 void Application::Run()
@@ -79,7 +79,7 @@ void Application::Run()
 
 void Application::Finalize()
 {
-	if (mGameLoopHandler == nullptr)
+	if (mGameLoopHandler != nullptr)
 	{
 		mGameLoopHandler->Finalize();
 	}

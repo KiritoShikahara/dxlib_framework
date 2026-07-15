@@ -53,3 +53,8 @@ void DxLibManager::EndFrame()
 {
     ScreenFlip();
 }
+
+bool DxLibManager::IsInitialized() const noexcept
+{
+    return mIsInitialized;
+}
