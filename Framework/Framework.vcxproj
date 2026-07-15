@@ -155,10 +155,20 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\System\DxLibManager\DxLibConfig.h" />
+    <ClInclude Include="Src\System\DxLibManager\DxLibManager.h" />
+    <ClInclude Include="Src\Log\ErrorHandle\ErrorHandle.h" />
+    <ClInclude Include="Src\System\AppContext\AppContext.h" />
+    <ClInclude Include="Src\System\Application\Application.h" />
     <ClInclude Include="Src\pch.h" />
+    <ClInclude Include="Src\System\GameLoopHandler\GameLoopHandler.h" />
     <ClInclude Include="Src\System\Time\Time.h" />
+    <ClInclude Include="Src\Utility\Singleton\Singleton.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\System\DxLibManager\DxLibManager.cpp" />
+    <ClCompile Include="Src\Log\ErrorHandle\ErrorHandle.cpp" />
+    <ClCompile Include="Src\System\Application\Application.cpp" />
     <ClCompile Include="Src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -166,6 +176,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Src\System\Time\Time.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Doc\ErrorHandle.md">
+      <SubType>
+      </SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
