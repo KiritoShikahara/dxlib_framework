@@ -1,9 +1,13 @@
 #pragma once
 
+// Utility
 #include<Utility/Singleton/Singleton.h>
-#include"../Time/Time.h"
-#include"../GameLoopHandler/GameLoopHandler.h"
 #include<Log/ErrorHandle/ErrorHandle.h>
+
+// System
+#include"../GameLoopHandler/GameLoopHandler.h"
+#include"../Time/Time.h"
+#include"../Input/InputManager.h"
 
 // Dxlib
 #include"../DxLibManager/DxLibManager.h"
@@ -51,6 +55,9 @@ private:
 
 	// DxLib管理
 	std::unique_ptr<DxLibManager> mDxLib;
+
+	// 入力管理
+	std::unique_ptr<InputManager> mInput;
 
 	// ゲームループハンドラ
 	IGameLoopHandler* mGameLoopHandler = nullptr;

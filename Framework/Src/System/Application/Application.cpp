@@ -26,10 +26,13 @@ ErrorHandle Application::Initialize(const ApplicationConfig& config)
 	// DxLibの生成
 	mDxLib = std::make_unique<DxLibManager>();
 	eh = mDxLib->Initialize(config.DxLibConfig);
-	if (FAILED(eh))
+	if (EH_FAILED(eh))
 	{
 		return eh;
 	}
+
+	// 入力
+	mInput = std::make_unique<InputManager>();
 
 	// コンテキストへの追加
 	AddToContext();
@@ -44,6 +47,8 @@ void Application::Run()
 	while (mDxLib->BeginFrame() == true)
 	{
 		mTime->Update();
+		mInput->Update();
+
 		float dt = mTime->GetDeltaTime();
 		float rawDt = mTime->GetRawDeltaTime();
 
@@ -87,4 +92,5 @@ void Application::Finalize()
 void Application::AddToContext()
 {
 	AppContext::Get()->Register(*mTime);
+	AppContext::Get()->Register(*mInput);
 }

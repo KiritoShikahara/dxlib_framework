@@ -23,18 +23,18 @@ namespace Error
     void ShowErrorWindow(const ErrorHandle& error);
 }
 
-#ifdef FAILED
-#undef FAILED
+#ifdef EH_FAILED
+#undef EH_FAILED
 #endif
 
-#ifdef SUCCESS
-#undef SUCCESS
+#ifdef EH_SUCCESS
+#undef EH_SUCCESS
 #endif
 
-#define FAILED(errorHandle) \
+#define EH_FAILED(errorHandle) \
     (::Error::IsFailed(errorHandle))
 
-#define SUCCESS(errorHandle) \
+#define EH_SUCCESS(errorHandle) \
     (::Error::IsSuccess(errorHandle))
 
 #define SHOW_ERROR_WINDOW(errorHandle) \
